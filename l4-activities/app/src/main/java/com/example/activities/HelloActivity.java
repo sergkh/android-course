@@ -20,6 +20,9 @@ public class HelloActivity extends AppCompatActivity {
         ActivityHelloBinding binding = ActivityHelloBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        String name = getIntent().getStringExtra("name");
+        binding.textView.setText("Hello, " + name + "!");
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
