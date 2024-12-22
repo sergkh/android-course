@@ -28,8 +28,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.button.setOnClickListener((v) -> {
-            Intent intent = new Intent(this, HelloActivity.class);
-            intent.putExtra("name", binding.editTextText.getText().toString());
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, "Text");
+            intent.setType("text/plain");
 
             this.startActivity(intent);
         });
