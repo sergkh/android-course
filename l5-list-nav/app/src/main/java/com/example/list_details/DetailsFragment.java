@@ -18,6 +18,11 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetailsBinding.inflate(inflater, container, false);
+
+        binding.tvDetailsAuthor.setText(getArguments().getString("author"));
+        binding.tvDetailsTitle.setText(getArguments().getString("title"));
+        binding.tvDetails.setText(getArguments().getString("details"));
+
         return binding.getRoot();
     }
 }

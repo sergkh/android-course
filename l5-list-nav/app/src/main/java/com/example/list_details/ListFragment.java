@@ -5,10 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +47,18 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.rvBooks.setAdapter(new BookViewAdapter(books));
+        binding.rvBooks.setAdapter(new BookViewAdapter(books, idx -> {
+            Log.i("ListFragment", "View clicked: " + idx);
+
+            Book b = books.get(idx);
+            Bundle args = new Bundle();
+            args.putString("author", b.getAuthor());
+            args.putString("title", b.getName());
+            args.putString("details", b.getDescription());
+
+            Navigation.findNavController(view).navigate(R.id.action_openDetails, args);
+
+            return null;
+        }));
     }
 }
