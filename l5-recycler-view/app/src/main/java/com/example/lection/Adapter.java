@@ -1,23 +1,25 @@
 package com.example.lection;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lection.databinding.ItemLayoutBinding;
+
 import java.util.List;
 
-class ListHolder extends RecyclerView.ViewHolder {
-    public ListHolder(@NonNull View itemView) {
-        super(itemView);
-    }
-}
+public class Adapter extends RecyclerView.Adapter<Adapter.ListHolder> {
 
-public class Adapter extends RecyclerView.Adapter<ListHolder> {
+    static class ListHolder extends RecyclerView.ViewHolder {
+        final ItemLayoutBinding binding;
+
+        public ListHolder(ItemLayoutBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+    }
+
     private List<ListItem> items;
 
     public Adapter(List<ListItem> items) {
@@ -28,16 +30,20 @@ public class Adapter extends RecyclerView.Adapter<ListHolder> {
     @Override
     public ListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ListHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false)
+            ItemLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false)
         );
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListHolder holder, int position) {
         var item = items.get(position);
-        ((TextView) holder.itemView.findViewById(R.id.title)).setText(item.getName());
-        ((TextView) holder.itemView.findViewById(R.id.subtext)).setText(String.valueOf(item.getSize()));
-        ((CheckBox) holder.itemView.findViewById(R.id.checkBox)).setChecked(item.isSelected());
+        holder.binding.title.setText(item.getName());
+        holder.binding.subtext.setText(String.valueOf(item.getSize()));
+        holder.binding.checkBox.setChecked(item.isSelected());
+
+        holder.binding.checkBox.setOnClickListener(v -> {
+            item.setSelected(holder.binding.checkBox.isChecked());
+        });
     }
 
     @Override
