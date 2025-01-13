@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Google auth</string>
+    <string name="google_client_id"></string>
+</resources>
