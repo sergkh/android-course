@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ChargingMap</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="opencharge_key">OPENCHARGE_API_KEY</string>
+</resources>
