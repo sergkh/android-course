@@ -32,10 +32,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
@@ -103,6 +106,21 @@ public class MainActivity extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         Log.w(TAG, "Fetching FCM registration token failed", task.getException());
                         return;
+                    }
+
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    CollectionReference collection = db.collection("subscribers");
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if (user != null) {
+                        collection.add(
+                                Map.of(
+                                        "userId", user.getUid(),
+                                        "user", user.getDisplayName(),
+                                        "token", task.getResult()
+                                )
+                        );
                     }
                     Log.d(TAG, "Token " + task.getResult());
                 }
