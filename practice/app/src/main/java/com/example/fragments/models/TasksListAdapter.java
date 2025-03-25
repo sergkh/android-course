@@ -52,12 +52,12 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
             binding.taskName.setText(t.getTitle());
 
             binding.tvSubtasks.setText(
-                t.getSubtasks().isEmpty() ? "" : "" + t.countCompletedSubtasks() + "/" + t.getSubtasks().size()
+                t.getSubtasks().isEmpty() ? "" : "" + t.getCompletedSubtasksCount() + "/" + t.getSubtasks().size()
             );
 
             binding.btnTaskDetails.setOnClickListener(v -> {
                 Bundle args = new Bundle();
-                args.putString("taskId", t.getId());
+                args.putString("itemId", t.getId());
 
                 Navigation.findNavController(binding.getRoot()).navigate(
                     R.id.action_homeFragment_to_itemInfoFragment, args

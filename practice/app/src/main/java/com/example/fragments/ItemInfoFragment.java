@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.fragments.models.Task;
 import com.example.fragments.models.TasksViewModel;
 
 public class ItemInfoFragment extends Fragment {
+    private final String TAG = "ItemInfoFragment";
 
     private FragmentItemInfoBinding binding;
     private TasksViewModel viewModel;
@@ -35,7 +37,11 @@ public class ItemInfoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Task task = viewModel.findTask(getArguments().getString("taskId"));
+
+        Task task = viewModel.findTask(getArguments().getString("itemId"));
+
+        // ініціалізація компонентів екрану з об'єкту Task
+        Log.i(TAG, "Task subtasks " + task.getSubtasks().size());
 
         binding.subTasksList.setAdapter(new SubTasksListAdapter(task.getSubtasks()));
     }

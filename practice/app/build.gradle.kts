@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -33,17 +36,41 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        compose = true
     }
 }
 
 dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+
+    // Для підтримки аутентифікації
+    implementation("com.google.firebase:firebase-auth")
+    // Готовий інтерфейс аутентифікації
+    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
+    // Підтримка аутентифікації через гугл
+    implementation("com.google.android.gms:play-services-auth:20.3.0")
+
+    // Бібліотека Glide, яку можна буде використати для завантаження зображень аватарки
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }

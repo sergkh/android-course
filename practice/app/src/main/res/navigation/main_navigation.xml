@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_createItemFragment"
             app:destination="@id/createItemFragment" />
@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/createItemFragment"
         android:name="com.example.fragments.CreateItemFragment"
-        android:label="fragment_create_item"
-        tools:layout="@layout/fragment_create_item" >
+        android:label="Create a reminder"
+        tools:layout="@layout/fragment_create_item">
         <action
             android:id="@+id/action_createItemFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -29,11 +29,14 @@
     <fragment
         android:id="@+id/itemInfoFragment"
         android:name="com.example.fragments.ItemInfoFragment"
-        android:label="fragment_item_info"
-        tools:layout="@layout/fragment_item_info" >
+        android:label="Reminder info"
+        tools:layout="@layout/fragment_item_info">
         <action
             android:id="@+id/action_itemInfoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="itemId"
+            app:argType="string" />
     </fragment>
     <argument
         android:name="taskId"

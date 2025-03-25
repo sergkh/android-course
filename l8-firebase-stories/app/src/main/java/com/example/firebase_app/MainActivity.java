@@ -108,21 +108,18 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
 
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    CollectionReference collection = db.collection("subscribers");
+                    Log.d(TAG, "Token " + task.getResult());
+
+                    // Збережемо токен для повідомлень в Firestore
+                    CollectionReference collection = FirebaseFirestore.getInstance().collection("subscribers");
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     if (user != null) {
-                        collection.add(
-                                Map.of(
-                                        "userId", user.getUid(),
-                                        "user", user.getDisplayName(),
-                                        "token", task.getResult()
-                                )
+                        collection.document(user.getUid()).set(
+                            Map.of("user", user.getDisplayName(), "token", task.getResult())
                         );
                     }
-                    Log.d(TAG, "Token " + task.getResult());
                 }
             });
     }

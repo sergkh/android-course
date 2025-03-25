@@ -21,19 +21,14 @@ public class NotificationsService extends FirebaseMessagingService {
     public void onNewToken(@NonNull String token) {
         Log.i(TAG, "New firebase token: " + token);
 
-        // зберегти токен на сервері асоційованим з користувачем
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference collection = db.collection("subscribers");
+        // Збережемо токен для повідомлень в Firestore
+        CollectionReference collection = FirebaseFirestore.getInstance().collection("subscribers");
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
-
-        collection.add(
-            Map.of(
-                    "userId", user.getUid(),
-                    "user", user.getDisplayName(),
-                    "token", token)
+            collection.document(user.getUid()).set(
+                Map.of("user", user.getDisplayName(), "token", token)
             );
         }
     }

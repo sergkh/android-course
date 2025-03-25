@@ -2,10 +2,13 @@ package com.example.fragments.models;
 
 import android.location.Location;
 
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
 import java.time.LocalDate;
 import java.util.List;
 
-public class Task {
+public class Task extends BaseObservable {
     private String id;
     private String title;
     private String description;
@@ -35,6 +38,7 @@ public class Task {
         this.id = id;
     }
 
+    @Bindable
     public String getTitle() {
         return title;
     }
@@ -43,6 +47,7 @@ public class Task {
         this.title = title;
     }
 
+    @Bindable
     public String getDescription() {
         return description;
     }
@@ -51,6 +56,7 @@ public class Task {
         this.description = description;
     }
 
+    @Bindable
     public List<Subtask> getSubtasks() {
         return subtasks;
     }
@@ -59,6 +65,7 @@ public class Task {
         this.subtasks = subtasks;
     }
 
+    @Bindable
     public boolean isCompleted() {
         return completed;
     }
@@ -83,7 +90,8 @@ public class Task {
         this.remindAt = remindAt;
     }
 
-    public int countCompletedSubtasks() {
+    @Bindable
+    public int getCompletedSubtasksCount() {
         return (int) subtasks.stream().filter(t -> t.isCompleted()).count();
     }
 

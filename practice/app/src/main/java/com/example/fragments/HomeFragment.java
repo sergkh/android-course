@@ -48,9 +48,5 @@ public class HomeFragment extends Fragment {
         });
 
         binding.tasksList.setAdapter(listAdapter);
-
-//        binding.btnTemp.setOnClickListener(v -> {
-//            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_itemInfoFragment);
-//        });
     }
 }

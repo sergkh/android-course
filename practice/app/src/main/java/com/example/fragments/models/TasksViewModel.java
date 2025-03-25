@@ -23,7 +23,7 @@ public class TasksViewModel extends ViewModel {
                 "First task",
                 "Some description",
                 false,
-                List.of(),
+                List.of(new Subtask("First subtask", false), new Subtask("Second subtask", false)),
                 null,
                 null)
         );
@@ -34,7 +34,7 @@ public class TasksViewModel extends ViewModel {
                 "Second task",
                 "Some description",
                 false,
-                List.of(),
+                List.of(new Subtask("First subtask", false), new Subtask("Second subtask", false)),
                 null,
                 null)
         );
@@ -46,9 +46,6 @@ public class TasksViewModel extends ViewModel {
     }
 
     public Task findTask(String taskId) {
-        Log.i("T", "Looking for task " + taskId);
-        Log.i("T", "List " + Arrays.toString(tasks.stream().toArray()));
-
         return tasks.stream()
                 .filter(t -> t.getId().equals(taskId))
                 .findFirst()
