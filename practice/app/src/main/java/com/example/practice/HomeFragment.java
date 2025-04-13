@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.practice;
 
 import android.os.Bundle;
 
@@ -12,14 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fragments.databinding.FragmentHomeBinding;
-import com.example.fragments.models.Task;
-import com.example.fragments.models.TasksListAdapter;
-import com.example.fragments.models.TasksViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import com.example.practice.databinding.FragmentHomeBinding;
+import com.example.practice.models.TasksListAdapter;
+import com.example.practice.models.TasksViewModel;
 
 public class HomeFragment extends Fragment {
 
@@ -41,7 +36,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listAdapter = new TasksListAdapter(viewModel.getTasks());
+        listAdapter = new TasksListAdapter(viewModel.getTasks().getValue());
+
+        viewModel.getTasks().observe(getViewLifecycleOwner(), list -> {
+            listAdapter.setTasks(list);
+        });
 
         binding.fbCreate.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_createItemFragment);

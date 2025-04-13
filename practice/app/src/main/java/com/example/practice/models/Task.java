@@ -1,6 +1,4 @@
-package com.example.fragments.models;
-
-import android.location.Location;
+package com.example.practice.models;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

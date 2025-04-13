@@ -1,15 +1,14 @@
-package com.example.fragments.models;
+package com.example.practice.models;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fragments.R;
-import com.example.fragments.databinding.SubTaskLayoutBinding;
-import com.example.fragments.databinding.TaskLayoutBinding;
+import com.example.practice.R;
+import com.example.practice.databinding.SubTaskLayoutBinding;
+import com.example.practice.databinding.TaskLayoutBinding;
 
 import java.util.List;
 

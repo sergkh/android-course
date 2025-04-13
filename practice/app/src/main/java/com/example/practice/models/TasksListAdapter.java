@@ -1,17 +1,15 @@
-package com.example.fragments.models;
+package com.example.practice.models;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fragments.R;
-import com.example.fragments.databinding.TaskLayoutBinding;
+import com.example.practice.R;
+import com.example.practice.databinding.TaskLayoutBinding;
 
 import java.util.List;
 
@@ -20,6 +18,11 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Task
 
     public TasksListAdapter(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+        notifyDataSetChanged();
     }
 
     @NonNull

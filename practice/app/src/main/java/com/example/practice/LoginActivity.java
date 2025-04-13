@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,27 +11,27 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.fragments.databinding.ActivityLoginBinding;
+import com.example.practice.databinding.ActivityLoginBinding;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String TAG = "LoginActivity";
 
     private ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
             new FirebaseAuthUIActivityResultContract(),
             result -> {
                 IdpResponse response = result.getIdpResponse();
                 if (result.getResultCode() == RESULT_OK) {
-                    Log.i("MainActivity", "User logged in");
+                    Log.i(TAG, "User logged in");
                     gotoMainScreen();
                 } else {
-                    Log.w("MainActivity", "Sign in failed: " + response.getError().getErrorCode());
+                    Log.w(TAG, "Sign in failed: " + response.getError().getErrorCode());
                 }
             });
 

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.fragments"
+    namespace = "com.example.practice"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.fragments"
+        applicationId = "com.example.practice"
         minSdk = 35
         targetSdk = 35
         versionCode = 1
@@ -52,6 +52,9 @@ dependencies {
 
     // Бібліотека Glide, яку можна буде використати для завантаження зображень аватарки
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // Бібліотека для роботи з БД Firestore
+    implementation("com.google.firebase:firebase-firestore")
 
     implementation(libs.appcompat)
     implementation(libs.material)

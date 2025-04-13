@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.practice;
 
 import android.os.Bundle;
 
@@ -12,11 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fragments.databinding.FragmentCreateItemBinding;
-import com.example.fragments.databinding.FragmentItemInfoBinding;
-import com.example.fragments.models.SubTasksListAdapter;
-import com.example.fragments.models.Task;
-import com.example.fragments.models.TasksViewModel;
+import com.example.practice.databinding.FragmentItemInfoBinding;
+import com.example.practice.models.SubTasksListAdapter;
+import com.example.practice.models.Task;
+import com.example.practice.models.TasksViewModel;
 
 public class ItemInfoFragment extends Fragment {
     private final String TAG = "ItemInfoFragment";

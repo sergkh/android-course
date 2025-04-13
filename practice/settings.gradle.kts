@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "fragments"
+rootProject.name = "practice"
 include(":app")
  

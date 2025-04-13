@@ -6,7 +6,7 @@
     <data>
         <variable
             name="task"
-            type="com.example.fragments.models.Task" />
+            type="com.example.practice.models.Task" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

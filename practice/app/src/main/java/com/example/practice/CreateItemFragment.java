@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.practice;
 
 import android.os.Bundle;
 
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
@@ -18,12 +19,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.fragments.databinding.FragmentCreateItemBinding;
-import com.example.fragments.models.TasksViewModel;
+import com.example.practice.databinding.FragmentCreateItemBinding;
+import com.example.practice.models.Subtask;
+import com.example.practice.models.Task;
+import com.example.practice.models.TasksViewModel;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class CreateItemFragment extends Fragment {
     private static final String TAG = "CreateItemFragment";
@@ -91,5 +98,27 @@ public class CreateItemFragment extends Fragment {
         if (binding.textTitle.getText().isEmpty()) {
             Toast.makeText(getContext(), "Title text has to be specified", Toast.LENGTH_LONG).show();
         }
+
+        Task task = new Task();
+        task.setId(UUID.randomUUID().toString());
+        task.setTitle(binding.textTitle.getText().toString());
+        task.setDescription(binding.textDescription.getText().toString());
+        task.setCompleted(false);
+
+        // Comma separated to make UI easier
+        String subtasksStr = binding.editAddSubItem.getText().toString();
+        List<Subtask> subtasks = Arrays.stream(subtasksStr.split(","))
+                .filter(String::isBlank)
+                .map(name -> new Subtask(name, false))
+                .collect(Collectors.toList());
+
+        task.setSubtasks(subtasks);
+
+        Log.d(TAG, "Creating a task: " + task);
+        viewModel.addTask(task);
+
+        Navigation.findNavController(binding.getRoot()).navigate(
+            R.id.action_createItemFragment_to_homeFragment
+        );
     }
 }

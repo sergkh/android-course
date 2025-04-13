@@ -1,4 +1,4 @@
-package com.example.fragments.models;
+package com.example.practice.models;
 
 public class Subtask {
     private String title;
@@ -10,6 +10,11 @@ public class Subtask {
     }
 
     public Subtask() {
+    }
+
+    public Subtask(boolean completed, String title) {
+        this.completed = completed;
+        this.title = title;
     }
 
     public String getTitle() {

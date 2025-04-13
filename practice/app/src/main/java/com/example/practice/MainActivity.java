@@ -1,4 +1,4 @@
-package com.example.fragments;
+package com.example.practice;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.fragments.databinding.ActivityMainBinding;
+import com.example.practice.databinding.ActivityMainBinding;
 import com.firebase.ui.auth.AuthUI;
 
 public class MainActivity extends AppCompatActivity {
